@@ -99,8 +99,8 @@ export function useNovaVoice({ onTranscript, onSpeechEnd, enabled = true }: UseN
     synthRef.current.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    utterance.pitch = 0.95;
+    utterance.rate = 0.85;
+    utterance.pitch = 0.85;
     utterance.volume = 1.0;
 
     const voices = synthRef.current.getVoices();
@@ -108,12 +108,13 @@ export function useNovaVoice({ onTranscript, onSpeechEnd, enabled = true }: UseN
     if (voices.length > 0) {
       const preferredVoice = voices.find(voice =>
         voice.name.includes('Samantha') ||
-        voice.name.includes('Karen') ||
         voice.name.includes('Victoria') ||
         voice.name.includes('Serena') ||
-        (voice.name.includes('Google US English') && voice.name.includes('Female')) ||
+        voice.name.includes('Ava') ||
         (voice.name.includes('Google UK English Female')) ||
-        voice.name.includes('Microsoft Zira')
+        (voice.name.includes('Google US English') && voice.name.includes('Female')) ||
+        voice.name.includes('Microsoft Zira') ||
+        voice.name.includes('Karen')
       );
 
       if (preferredVoice) {
